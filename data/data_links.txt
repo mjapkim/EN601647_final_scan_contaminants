@@ -1,0 +1,5 @@
+Mycoplasma complete genome:
+https://www.ncbi.nlm.nih.gov/assembly/GCF_000027345.1/
+
+Mycoplasma reference strains short read sequencing:
+https://www.ncbi.nlm.nih.gov/sra?term=SRP081446
