@@ -30,3 +30,5 @@ with open('fmIndexed.pkl', 'rb') as input:
             short_seq_matches[name] = matches
 with open('shortSeq_match.pkl', 'wb') as output:
     pickle.dump(short_seq_matches, output, pickle.HIGHEST_PROTOCOL)
+
+del short_seq_matches
