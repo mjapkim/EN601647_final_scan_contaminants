@@ -3,8 +3,11 @@
 ## Files included:
 
 genome_preproc.py....preprocessing step for reference genomes to be indexed
+
 bloomfilter.py.......class file for making bloom filters
+
 mycoplasma_test.py...produces output for mycoplasma tests
+
 synthetic_test.py....produces output for synthetic data
 
 ### genome_preproc.py
