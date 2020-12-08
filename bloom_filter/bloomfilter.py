@@ -1,7 +1,3 @@
-# Install mmh3 and bitarray 3rd party module first
-# pip install mmh3 -- murmur hash function
-# pip install bitarray
-
 import math
 import mmh3
 from bitarray import bitarray 
