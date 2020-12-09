@@ -1,0 +1,24 @@
+REAMDE
+General overview and how to run: 
+	The "minimizer approach" can be run with a command similar to the following one:
+
+		python ./find_contam_with_min_FINAL.py some_file.fasta m k skips
+
+	Where the fasta file is a multi-read fasta file (where one read is on one line) from a sequencing run.
+	"m" is length of the minimizer. 
+	"k" is the length of the k-mer.
+	"skips" are described in the write-up, but essentailly refer to the skipping every N-th kmer when creating the minimizer database. 
+
+	For example, the following command would search for contamination in a simulated sequencing run, with a minimizer length of 11, kmer length of 21, and NO skipping. 
+
+		python ./find_contam_with_min_FINAL.py simulation.gs100000.cov30.het0.5.err1.contamination4.readsize250.fasta 11 21 1
+
+Outputs:
+	There are several output files, most of which are for diagnoistc purposes. 
+		- Two fasta files will be outputed. One that is marked as "target" and one that is marked as "contamination"
+		-A txt document with the prefix "db_size_" records the size of the database. 
+		-A txt document with the prefix "query_time_" records the time to query the database.
+		-A txt document with the prefix "db_time_" records the time to make the database. 
+
+Other notes:
+	The threshold needs to be manually set. See the write-up for suggestions on how to set the threshold. 
