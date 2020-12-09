@@ -1,0 +1,1 @@
+pip install pandas bloom-filter mmh3 bitarray seaborn
