@@ -1,3 +1,5 @@
+## FM index implementation was taking from JHU Computational Genomics class GitHub repo
+
 from Bio import SeqIO
 import pickle
 
@@ -76,7 +78,7 @@ class FmIndex():
             # constant-time guarantee for resolutions
             if suf % n == 0:
                 ssa[i] = suf
-        print(ssa)
+        # print(ssa)
         return ssa
     
     def __init__(self, t, cpIval=4, ssaIval=4):
@@ -133,18 +135,7 @@ class FmIndex():
             row = stepLeft(row)
             nsteps += 1
         return self.ssa[row] + nsteps
-    
-    def hasSubstring(self, p):
-        ''' Return true if and only if p is substring of indexed text '''
-        l, r = self.range(p)
-        return r > l
-    
-    def hasSuffix(self, p):
-        ''' Return true if and only if p is suffix of indexed text '''
-        l, r = self.range(p)
-        off = self.resolve(l)
-        return r > l and off + len(p) == self.slen-1
-    
+       
     def occurrences(self, p):
         ''' Return offsets for all occurrences of p, in no particular order '''
         l, r = self.range(p)
