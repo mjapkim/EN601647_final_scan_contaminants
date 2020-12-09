@@ -1,0 +1,17 @@
+README
+
+Files included are FM index implemntation for simulated data. The input data (target genome and short read seqs) can be changed to the full Mycoplasma pneumoniae genome and the short read sequencing data of the same organism. Implemented code uses simulated data to reduce runtime.
+Mycoplasma pneumoniae data was used strictly on MARCC bigmem server.
+
+Files for FM-index
+CG_FMIndex.py : FM index implementation from JHU Computational Genomics class 
+write_FMIndex.py : create compressed data structure using simulated target genome and output data structure
+match_pattern_in_text.py : using simulated short reads as patterns, look for patterns in the data structure generated from write_FMIndex.py 
+output_list_of_contam_reads.py : output list of contaminated reads 
+
+To run
+python3 write_FMIndex.py
+python3 match_pattern_in_text.py
+python3 output_list_of_contam_reads.py > fm_index_contam_reads.txt
+
+The fm_index_contam_reads.txt file will have a list of reads with potential contaminants from the 20,0000 reads in simulation.gs100000.cov30.het0.5.err1.contamination4.readsize150.fasta file.

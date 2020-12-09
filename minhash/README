@@ -1,0 +1,18 @@
+README
+
+Files included are MinHash implemntation for simulated data. The input data (target genome and short read seqs) can be changed to the full Mycoplasma pneumoniae genome and the short read sequencing data of the same organism. Implemented code uses simulated data to reduce runtime.
+Mycoplasma pneumoniae data was used strictly on MARCC bigmem server, however, we could not successfuly run the MinHash on Mycoplasma data due to running out of memory.
+
+Files for MinHash
+create_kmers_and_reads.py : converts both full genome and short reads to equal length kmers/reads (preparation step prior to using hash functions) 
+convert_kmers_to_hash.py : using the mmh3 library, has the k-mers of length 60, using 10 hash functions
+compute_jaccard_sim_index.py : compare all reads from the genome set (set A) to all reads from short reads (set B) and compute Jaccard similarity index. Output those with index > 0
+mh_output_list_of_contam_reads.py : output list of potentially contaminated reads if the Jaccard similarity index is equal to 1
+
+To run
+python3 create_kmers_and_reads.py
+python3 convert_kmers_to_hash.py
+python3 compute_jaccard_sim_index.py 
+python3 mh_output_list_of_contam_reads > mh_index_contam_reads.txt
+
+The mh_index_contam_reads.txt file will have a list of reads with potential contaminants from the 20,0000 reads in simulation.gs100000.cov30.het0.5.err1.contamination4.readsize150.fasta file.
