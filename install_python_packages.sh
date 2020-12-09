@@ -1,1 +1,1 @@
-pip install pandas bloom-filter mmh3 bitarray seaborn biopython
+pip install pandas mmh3 bitarray seaborn biopython
