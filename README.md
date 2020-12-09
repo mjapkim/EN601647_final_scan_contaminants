@@ -1,11 +1,7 @@
-# EN601647_final_scan_contaminants
+# EN.601.647 Contamination Scanning/Detection via Genome Indexing
 
-<b>Summary Goal:</b> Identify Mycoplasma genome contamination in the NCBI short read dataset for S.Cerevisiae through approximate matching. Compare three different indexing methods to index Mycoplasma genome as contaminants, evaluating them in terms of speed and accuracy of contamination location identification, and report performance.
+Identification of contamination of sequencing reads by foreign biological samples remains an active challenge within the field of computational genomics. For the purposes of this project, we selected 3 different indexing methods to examine their efficacy on this problem: Kmer Profiling, FM-Indexing, and Bloom Filter Indexing. Each approach was evaluated for performance on both real world and synthetic data and adapted from its original implementation through parameter selection or space reduction techniques to improve its accuracy and/or efficiency. Our analyses have shown that, while it runs in a reasonable amount of time, kmer profiling produces conservative results; current implementations of Bloom filter indexing cannot be used as a standalone method for contamination detection; and the resources required to utilize unmodified FM-Indexing on genomic data are enormous. Future work on these and other methods will be required to conquer this challenge.
 
-<b>What is the method you want to develop?</b>
-High-throughput sequencing technologies have been used to create genomes of different species in a cost-effective and rapid manner. Sequences obtained, however, may be contaminated with DNA from sources other than the sample and different methods to identify and remove contamination from genomic datasets have been developed. Current techniques use an offline approach, where the given sample is compared to target datasets to identify matches.
+Python implementations unique to each method are saved in the respective folders (bloom_filter, minimizers, minhash, and fm-index), with README files unique to each method that contains file explanations and how to run the codes. 
 
-<b>Clarification of ‘kmer profiling’:</b>
-In our project, we would like to approach this problem by evaluating the k-mer profile for the contaminant reference and compare it to different samples. By k-mer profile, we mean comparing the coverage and frequency of k-mers that appear in the reference to the sample. We will use the expectation that a contaminated sample would have slightly less defined heterozygotic peaks. K-mers that do not fit in the reference profile or within the sample error peaks could indicate contamination. We can identify k-mers that appear in our contaminant reference as an indication for contamination.
-
-We will compare this k-mer profiling approach against three other indexing techniques: Bloom filters, FM index, and minhash.
+Prior to implementing/analyzing either of the four methods, please run the install_python_packages.sh script (./install_python_packages.sh) to ensure all packages necessary are installed in your environment.
