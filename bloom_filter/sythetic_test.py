@@ -80,11 +80,12 @@ def detect_contamination(test_words,test_names,bloomf):
     print('Count of contamintant words = %s'%contam_count)
 
 if __name__=="__main__":
+    # here used the corrent read count
     n = 100000 #no of items to add
     fpp = [0.01, 0.05, 0.1, 0.15] #false positive probability
-    fpp = [0.15]
-    #ref = 'target_ref'
-    ref = 'contam_ref'
+    # use target ref or contam ref for BFI build
+    ref = 'target_ref'
+    #ref = 'contam_ref'
     read_length = 150 # should match both the reference and test sequence
     
     if ref == 'target_ref':
@@ -97,6 +98,7 @@ if __name__=="__main__":
     outfile_path = '/home/en44704/Desktop/EN601647_final_scan_contaminants/bloom_filter/' + ref + '/'
     
     for p in fpp:
+        print("00000000000000000000000000000000000")
         # build bf
         start_build = time.perf_counter()
         bloomf = build_bf(n, p, ref_genome)
@@ -110,12 +112,11 @@ if __name__=="__main__":
         file_contam = outfile_path + ref + "_bloom_synth_contam_reads" + str(p) + ".txt"
         
         # here do the bloomfilter check of membership
-        detect_contamination_output(file_corr,file_contam,test_words,test_names,bloomf)
+        #detect_contamination_output(file_corr,file_contam,test_words,test_names,bloomf)
         
         # without output files for timing
-        #detect_contamination(test_words,test_names,bloomf)
+        detect_contamination(test_words,test_names,bloomf)
         
         detected = time.perf_counter()
         print(detected - end_build)
-        print("00000000000000000000000000000000000")
 

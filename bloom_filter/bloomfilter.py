@@ -2,6 +2,8 @@ import math
 import mmh3
 from bitarray import bitarray 
 
+# Based off of Geeksforgeeks implementation
+
 class BloomFilter(object):
 
     '''
@@ -15,18 +17,14 @@ class BloomFilter(object):
             False Positive probability in decimal
         '''
         # False posible probability in decimal
-        self.fp_prob = fp_prob
-         
+        self.fp_prob = fp_prob       
         # Size of bit array to use
         self.size = self.get_size(items_count, fp_prob)
- 
         # number of hash functions to use
         self.hash_count = self.get_hash_count(self.size, items_count)
-                  
         # Bit array of given size
         self.bit_array = bitarray(self.size)
-         
-        # initialize all bits as 0
+        # initialize all bits to 0
         self.bit_array.setall(0)
 
     def add(self, item):
@@ -38,8 +36,9 @@ class BloomFilter(object):
             # create a digest for the given item
             # hash the item k times and use i as the seed
             digest = mmh3.hash(item,i) % self.size
+            # add the digest to our list
             digests.append(digest)
-            # set the bit at digest to 1 in the bit_array
+            # turn the bit at digest on in the bit_array
             self.bit_array[digest] = True
 
     def check(self,item):
@@ -47,8 +46,12 @@ class BloomFilter(object):
         Test item for membership in the set
         '''
         for i in range(self.hash_count):
+            # again make a digest, now for the test word
+            # use the same hashes and seed
             digest = mmh3.hash(item,i) % self.size
+            # see if the bits are all turned on in the bit array
             if not self.bit_array[digest]:
+                # if any bit is turned off return false
                 return False
         return True
 
@@ -56,13 +59,6 @@ class BloomFilter(object):
     def get_size(self, n, p):
         '''
         Return size of bit array (m)
-        Return the size of bit array(m) to used using
-        following formula
-                m = -(n * lg(p)) / (lg(2)^2)
-        n : int
-            number of items expected to be stored in filter
-        p : float
-            False Positive probability in decimal
         '''
         m = -(n * math.log(p))/(math.log(2)**2)
         return int(m)
@@ -70,14 +66,7 @@ class BloomFilter(object):
     @classmethod
     def get_hash_count(self, m, n):
         '''
-        Return the hash function(k) to be used using
-        following formula
-                k = (m/n) * lg(2)
-                 
-        m : int
-            size of bit array
-        n : int
-            number of items expected to be stored in filter
+        Return the hash function(k) to be used
         '''
         k = (m/n) * math.log(2)
         return int(k)

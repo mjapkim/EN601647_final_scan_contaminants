@@ -29,7 +29,7 @@ and the name of the output file
 
 The class takes in n, the number of items to be added to the filter, and p, the false positive probibility for the membership testing.
 
-#### Used by importing the class into the testing file
+Used by importing the class into the testing file
 
 ### mycoplasma_test.py
 #### runs the contamination detection using the reference mycoplasma bloom filter index
@@ -42,19 +42,26 @@ Takes the Mycoplasma reference genome and makes a bloom filter object based on i
 
 * can be run with different p values and different input files for reference and sample
 
-### synthetic_tesst.py
+### synthetic_test.py
 #### same as mycoplasma_test.py but for the synthetic data set
 
 Ran with both the contamination reference genome and the target reference genome as the basis for the bloom filter.
 
 For contaminant genome based bloom filter:
+
 	if bloomf.check(word):
+
 		this word is a contaminant
+
 	else:
+
 		this word is not in the set and probably not a contaminant
 
 For target genome based bloom filter:
 	if bloomf.check(word):
+
 		this word is 'clean,' it is in the target genome
+
 	else:
+
 		this word is probably a contaminant, it is NOT in the target genome 
